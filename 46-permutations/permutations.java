@@ -2,7 +2,6 @@ class Solution {
     public List<List<Integer>> permute(int[] arr) {
 
     List<List<Integer>> permutStore = new ArrayList<>();
-        Arrays.sort(arr);                            //  Now, sort the arr: arr= {1,1,2,2};
         permutationI(arr, new ArrayList<>(), new ArrayList<>(),permutStore);
         return permutStore;
     }
