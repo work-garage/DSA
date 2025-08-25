@@ -1,48 +1,42 @@
 class Solution {
-
     public void solveSudoku(char[][] board) {
-        sudoku(0, 0, board);
+        solve(board);
     }
 
-    boolean sudoku(int i, int j, char[][] board){
-
-        if(i==9){                   //if(i==8  && j==8) is less good
-            return true;
-        }
-
-        if(j==9){                            //to prevent j exceeds 8
-            return sudoku(i+1, 0, board);
-        }
-
-        //where ever needed to call recursion call like:
-        //  if true, we want to finish, if not go further => then use 1) if(sudoku(i, j+1, board)) return true;
-        //      OR    
-        //  if true, we want to finish, if not then also finish => then use 2) return sudoku(i, j+1, board);
-
-        if(board[i][j]!='.'){ return sudoku(i, j+1, board); }
-        else{
-            for(int v = 1; v<=9; v++){
-                if(isValid(v, i, j, board) ){
-                    board[i][j]= (char) ('0'+v);       //place on board      //
-
-                    if(sudoku(i, j+1, board)) return true;
-
-                    board[i][j]='.';                //remove from board
+    private boolean solve(char[][] board) {
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                if (board[row][col] == '.') {
+                    for (char c = '1'; c <= '9'; c++) {
+                        if (isValid(board, row, col, c)) {
+                            board[row][col] = c; 
+                            if (solve(board)) return true; 
+                            board[row][col] = '.';
+                        }
+                    }
+                   
+                    return false;
                 }
-            }   
-            return false;
+            }
         }
+       
+        return true;
     }
 
-    boolean isValid(int v, int i, int j, char[][] board){
-        for(int k=0; k<9; k++){
-            if(board[i][k]== (char) ('0'+v)) return false;
-            if(board[k][j]== (char) ('0'+v)) return false;
-            if(board[(3*(i/3)) + k/3 ][ (3*(j/3)) + k%3 ]== (char) ('0'+v)) return false;
+    private boolean isValid(char[][] board, int row, int col, char c) {
+        int boxRowStart = (row / 3) * 3;
+        int boxColStart = (col / 3) * 3;
+
+        for (int i = 0; i < 9; i++) {
+
+            if (board[i][col] == c) return false;
+
+            if (board[row][i] == c) return false;
+
+            int r = boxRowStart + i / 3;
+            int cc = boxColStart + i % 3;
+            if (board[r][cc] == c) return false;
         }
         return true;
     }
 }
-
-
-
