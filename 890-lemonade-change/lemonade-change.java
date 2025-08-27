@@ -17,7 +17,7 @@ class Solution {
                     return false;
                 }
             }
-            else if(bills[i]==20){
+            else{
                if(changeHave[0]>=1 && changeHave[1]>=1){    //Note: keep $10,$5 giving first
                     changeHave[0]-=1;
                     changeHave[1]-=1;
