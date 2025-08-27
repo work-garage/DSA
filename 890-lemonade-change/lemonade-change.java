@@ -3,8 +3,9 @@ class Solution {
         int[] changeHave = new int[3];      // 0: 5$   1:  10$   2:20$
 
         int i = 0;
+        int n = bills.length;
 
-        while(i<bills.length){
+        while(i<n){
 
             if(bills[i]==10){
                 if(changeHave[0]>=1){
