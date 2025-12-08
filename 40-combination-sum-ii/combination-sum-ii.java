@@ -14,7 +14,7 @@ class Solution {
 
         for(int j = i; j < arr.length; j++){
 
-            if(j != i && arr[j] == arr[j-1]) continue;
+            if(j > i && arr[j] == arr[j-1]) continue;
             if(arr[j]>K) break;
 
             combi.add(arr[j]);
