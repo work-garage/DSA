@@ -1,39 +1,25 @@
 class Solution {
-    public List<List<Integer>> permute(int[] arr) {
-
-        List<List<Integer>> permutStore = new ArrayList<>();
-        permutationI(0, arr, permutStore);
-        return permutStore;
+    public List<List<Integer>> permute(int[] nums) {
+        List<List<Integer>> permutList = new ArrayList<>();
+        permutI(nums, new ArrayList<>(), permutList);
+        return permutList;
     }
 
-    void permutationI(int i, int[] arr, List<List<Integer>> permutStore){
+    void permutI( int[] arr, List<Integer> permut, List<List<Integer>> permutList){
+        
+        if(arr.length == 0) return;
 
-        if(i == arr.length){
-            //store copy of arr(snapshot of arr) in ArrayList (just like we store copy of ArrayList in ArrayList)
-            List<Integer> snapOfArr = new ArrayList<>();
-            for(int a:arr){
-                snapOfArr.add(a);
-            }
-            permutStore.add( new ArrayList<>(snapOfArr) );
-            //
-
+        if(permut.size()>=arr.length){
+            permutList.add(new ArrayList<>(permut));
             return;
         }
 
-        for(int idx = i; idx<arr.length; idx++){
-
-            swap(i,idx, arr);     //swap
-
-            permutationI(i+1, arr, permutStore);
-
-            swap(i,idx, arr);     //undo the swap
-
+        for(int j=0; j<arr.length; j++ ){
+            if(!permut.contains(arr[j])){
+                permut.add(arr[j]);
+                permutI(arr,permut,permutList);
+                permut.removeLast();
+            }
         }
-    }
-
-    void swap(int i1, int i2, int[] arr){
-        int temp = arr[i1];
-        arr[i1] = arr[i2];
-        arr[i2] = temp;
     }
 }
