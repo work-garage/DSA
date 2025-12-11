@@ -7,7 +7,7 @@ class Solution {
 
     void permutI( int i, int[] arr, List<List<Integer>> permutList){
 
-        if(i>=arr.length-1){    // 2
+        if(i>=arr.length-1){
             List<Integer> permut = new ArrayList<>();
             for(int n:arr){ permut.add(n); }
             permutList.add(new ArrayList<>(permut));
@@ -15,18 +15,13 @@ class Solution {
         }
 
         for(int j=i; j<arr.length ; j++){
-            swapArr(arr,i,j);
+            swapArr(arr,i,j);                   //swap(i,j)
             permutI(i+1,arr,permutList);
-            unswapArr(arr,j,i);
+            swapArr(arr,j,i);                   //unswap(i,j)
         }
     }
 
     void swapArr(int[] arr, int i, int j){
-        int temp = arr[j];
-        arr[j] = arr[i];
-        arr[i] = temp;
-    }
-    void unswapArr(int[] arr, int i, int j){
         int temp = arr[j];
         arr[j] = arr[i];
         arr[i] = temp;
