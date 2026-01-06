@@ -18,28 +18,20 @@ class Solution {
         Queue<TreeNode> q = new ArrayDeque<>();     //queue in java
         if(root==null) return 0;
         q.add(root);
-        int ansLevel = 0;
-        int maxSum = Integer.MIN_VALUE;
+        int ansLevel = 1;
+        int maxSum = root.val;      //1st node value
                 //in any Q if asks for max value and contains -ve elems,
-                // Then take initial value as Integer.MIN_VALUE
-        int times=1;
+                // Then take initial value as first element or Integer.MIN_VALUE
         int level = 1;
 
         while(!q.isEmpty()){
-            int t=times;
-            times = 0;
             int currSum = 0;
-            for(int i=1; i<=t; i++){
+            int currSize = q.size();
+            for(int i=1; i<=currSize; i++){
                 TreeNode n = q.remove();
                 currSum+=n.val;
-                if(n.left!=null){
-                    q.add(n.left);
-                    times++;
-                }
-                if(n.right!=null){
-                    q.add(n.right);
-                    times++;
-                }
+                if(n.left!=null) q.add(n.left);
+                if(n.right!=null) q.add(n.right);
             }
             if(currSum>maxSum){
                 maxSum = currSum;
