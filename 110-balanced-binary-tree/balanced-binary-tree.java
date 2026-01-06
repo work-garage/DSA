@@ -16,17 +16,23 @@
 class Solution {
     public boolean isBalanced(TreeNode root) {
         int i = helper(root);
-        if(i>99999) return false;
+        if(i==-1) return false;
         return true;
     }
     int helper(TreeNode node){
         if(node==null) return 0;
-        int l = helper(node.left);
-        int j = helper(node.right);
 
-        if(l-j<-1 || l-j>1) return 999999;
+        // Way 2) to take answer out of recursion when got answer, like this below
+
+        int l = helper(node.left);
+        if(l==-1) return -1;
+
+        int j = helper(node.right);
+        if(j==-1) return -1;
+
+        if(l-j<-1 || l-j>1) return -1;
         //cannot use Integer.MAX_VALUE, as doing 1+Integer.MAX_VALUE will give Integer.MIN_VALUE
-        //can also do: if(Math.abs(l-j)>1) return 999999;
+        //can also do: if(Math.abs(l-j)>1) return -1;
 
         return 1+Math.max(l,j);
     }
