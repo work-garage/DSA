@@ -30,8 +30,10 @@ class Solution {
         int sum = l[0]+j[0];
 
         int[] height_max = new int[2];
+        
+        height_max[1] = Math.max(l[1],j[1]);
 
-        height_max[1] = Math.max(sum, Math.max(l[1],j[1]));
+        if(sum>= Math.max(l[1],j[1]) ) height_max[1] = sum;
         height_max[0] = 1 + Math.max(l[0],j[0]);
         return height_max;
     }
