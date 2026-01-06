@@ -14,27 +14,19 @@
  * }
  */
 class Solution {
+    static int global =0;
     public int diameterOfBinaryTree(TreeNode root) {
-        int[] arr = helper(root);
-        return arr[1];
+        global =0;
+        diameter(root);
+        return global;
     }
 
-    int[] helper(TreeNode root){
-        int[] a = {0,0};
-        if(root==null) return a;
+    public int diameter(TreeNode root) {
+        if(root == null)  return 0;
+        int left = diameter(root.left);
+        int right = diameter(root.right);
 
-        int[] l = helper(root.left);
-
-        int[] j = helper(root.right);
-
-        int sum = l[0]+j[0];
-
-        int[] height_max = new int[2];
-        
-        height_max[1] = Math.max(l[1],j[1]);
-
-        if(sum>= Math.max(l[1],j[1]) ) height_max[1] = sum;
-        height_max[0] = 1 + Math.max(l[0],j[0]);
-        return height_max;
+        global = Math.max(global, left+right);
+        return 1+Math.max(left,right);
     }
 }
