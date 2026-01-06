@@ -23,7 +23,10 @@ class Solution {
         if(node==null) return 0;
         int l = helper(node.left);
         int j = helper(node.right);
-        if(!(l-j>=-1 && l-j<=1)) return 999999;
+
+        if(l-j<-1 || l-j>1) return 999999;
+        //cannot use Integer.MAX_VALUE, as doing 1+Integer.MAX_VALUE will give Integer.MIN_VALUE
+        //can also do: if(Math.abs(l-j)>1) return 999999;
 
         return 1+Math.max(l,j);
     }
