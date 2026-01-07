@@ -20,7 +20,7 @@ class Solution {
         helper(root,sum);
         return (int) (maxPrd % 1000000007 );
     }
-    public long helper(TreeNode root, long sum) {
+    public long helper(TreeNode root, long sum) { //can also make sum as global var to prevent parameter
         if(root==null) return 0;
 
         long s1 = helper(root.left, sum);
