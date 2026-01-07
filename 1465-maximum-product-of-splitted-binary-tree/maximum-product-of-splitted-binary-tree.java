@@ -18,7 +18,7 @@ class Solution {
     public int maxProduct(TreeNode root) {
         long sum = sum_of_all_nodes(root);
         helper(root,sum);
-        return (int) (maxPrd % 1_000_000_007L);
+        return (int) (maxPrd % 1000000007 );
     }
     public long helper(TreeNode root, long sum) {
         if(root==null) return 0;
