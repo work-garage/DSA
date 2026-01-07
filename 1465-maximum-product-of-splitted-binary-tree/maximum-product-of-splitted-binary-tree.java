@@ -24,13 +24,13 @@ class Solution {
         if(root==null) return 0;
 
         long s1 = helper(root.left, sum);
-        long s3 = sum - s1;
         long s2 = helper(root.right, sum);
-        long s4 = sum - s2;
 
-        maxPrd = Math.max(maxPrd, Math.max(s1*s3,s2*s4));
+        long val = root.val+s1+s2;
 
-        return (root.val+s1+s2);
+        maxPrd = Math.max(maxPrd, val*(sum-(val)) );
+
+        return val;
     }
     long sum_of_all_nodes(TreeNode root){
         if(root==null) return 0;
