@@ -15,42 +15,33 @@
  */
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+       List<List<Integer>> res = new ArrayList<>();
+       if(root == null) return res;
 
-        List<List<Integer>> lt = new ArrayList<>();
+       Deque<TreeNode> q = new LinkedList<>();
+       q.addFirst(root);
+       boolean reverse = false;
 
-        if(root==null) return lt;
-
-        Queue<TreeNode> q = new ArrayDeque<>();
-        Stack<TreeNode> st = new Stack<>();
-        int x = 0;
-
-        q.add(root);
-        while(!q.isEmpty()){
-            
-            List<Integer> temp = new ArrayList<>();
-
-            while(!q.isEmpty()){
-                TreeNode e = q.remove();
-                temp.add(e.val);
-                
-                if(x%2==0){
-                    if(e.left!=null) st.push(e.left);
-                    if(e.right!=null) st.push(e.right);
-                }
-                else{
-                    if(e.right!=null) st.push(e.right);
-                    if(e.left!=null) st.push(e.left);
-                }
+       while(!q.isEmpty()) {
+        List<Integer> current = new ArrayList<>();
+        int level = q.size();
+        for(int i = 0; i < level; i++){
+            if(!reverse) {
+                TreeNode curr = q.pollFirst();
+                current.add(curr.val);
+                if(curr.left != null) q.addLast(curr.left);
+                if(curr.right != null) q.addLast(curr.right);
             }
-
-            lt.add(new ArrayList<>(temp));
-            x++;
-
-            while(!st.isEmpty()){
-                q.add(st.pop());
+            else{
+                TreeNode curr = q.pollLast();
+                current.add(curr.val);
+                if(curr.right != null) q.addFirst(curr.right);
+                if(curr.left != null) q.addFirst(curr.left);
             }
-            
         }
-        return lt;
+        res.add(current);
+        reverse = !reverse;
+       } 
+        return res;
     }
 }
