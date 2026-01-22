@@ -1,4 +1,6 @@
 class Solution {
+    // Without Stack: depth based approach ( most Efficient) my code
+
     public String removeOuterParentheses(String s) {
         StringBuilder ans = new StringBuilder();
 
@@ -20,6 +22,34 @@ class Solution {
     }
 }
 
+
+// OR
+
+
+// Without Stack: depth based approach ( most Efficient 2)  externalCode
+
+// class Solution {
+//     public String removeOuterParentheses(String s) {
+//         StringBuilder sb = new StringBuilder();
+//         int depth = 0;
+
+//         for (char c : s.toCharArray()) {
+//             if (c == '(') {
+//                 if (depth > 0) sb.append(c); // not an outermost '('
+//                 depth++;
+//             } else { // c == ')'
+//                 depth--;
+//                 if (depth > 0) sb.append(c); // not an outermost ')'
+//             }
+//         }
+
+//         return sb.toString();
+//     }
+// }
+
+
+
+// VS Stack approach
 
 
 
@@ -76,33 +106,6 @@ class Solution {
 //             } else { // c == ')'
 //                 st.pop();
 //                 if (!st.isEmpty()) sb.append(')');
-//             }
-//         }
-
-//         return sb.toString();
-//     }
-// }
-
-
-
-//VS
-
-
-
-// Without Stack ( most Efficient)
-
-// class Solution {
-//     public String removeOuterParentheses(String s) {
-//         StringBuilder sb = new StringBuilder();
-//         int depth = 0;
-
-//         for (char c : s.toCharArray()) {
-//             if (c == '(') {
-//                 if (depth > 0) sb.append(c); // not an outermost '('
-//                 depth++;
-//             } else { // c == ')'
-//                 depth--;
-//                 if (depth > 0) sb.append(c); // not an outermost ')'
 //             }
 //         }
 
