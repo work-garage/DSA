@@ -1,41 +1,68 @@
 class Solution {
     public String removeOuterParentheses(String s) {
-        Stack<Character> st = new Stack<>();
-        //if(s.length()%2!=0) return "";
+        StringBuilder ans = new StringBuilder();
 
-        String ans = "";
+        int o = 0;      //open bracket depth
 
-        for(int i=0; i<s.length(); i++){
-            
-            //if(st.size%2!=0)
-            
-            if(st.size()>0 ){
-                if(st.peek()==s.charAt(i)){
-                    ans+=""+s.charAt(i);
-                    st.add(s.charAt(i));
-                }
-                else{
-                    if(st.size()==1){
-                        st.pop();
-                        continue;
-                    }
-                    st.pop();
-                    ans+=""+s.charAt(i);    // "" added, as to concatenate, otherwise st.pop() and s.charAt(i) will add their ascii eg('a'+'b'=>97+98= 195)    Thus its done as, String+char = String
-                }
+        for(char c : s.toCharArray()){
+
+            if(c=='('){
+                if(o>0)ans.append(c);
+                o++;
             }
-            else{
-                st.add(s.charAt(i));
+            else{                       // if( c==')' )
+                if(o>1)ans.append(c);
+                o--;
             }
+
         }
-
-        return ans;
+        return ans.toString();
     }
 }
 
 
+
+
+// 1) using Stack (myCode less optimised structure-wise)
+
+// public String removeOuterParentheses(String s) {
+//         Stack<Character> st = new Stack<>();
+//         //if(s.length()%2!=0) return "";
+
+//         String ans = "";            //should use StringBuilder(as its mutable) and String is immutable(when changed, creates new object and assigns value to ans)
+//                                     //String usage In loops causes repeated object creation + copying, leading to O(n²) behavior
+
+//         for(int i=0; i<s.length(); i++){      // can use for-each loop, but need to do: s.toCharArray()
+            
+//             //if(st.size%2!=0)
+            
+//             if(st.size()>0 ){                 // OR !st.isEmpty()
+//                 if(st.peek()==s.charAt(i)){
+//                     ans+=""+s.charAt(i);
+//                     st.add(s.charAt(i));
+//                 }
+//                 else{
+//                     if(st.size()==1){
+//                         st.pop();
+//                         continue;
+//                     }
+//                     st.pop();
+//                     ans+=""+s.charAt(i);    // "" added, as to concatenate, otherwise st.pop() and s.charAt(i) will add their ascii eg('a'+'b'=>97+98= 195)    Thus its done as, String+char = String
+//                 }
+//             }
+//             else{
+//                 st.add(s.charAt(i));
+//             }
+//         }
+
+//         return ans;
+//     }
+
+
 // VS
 
-// 2) using Stack
+// 2) using Stack   (More optimised structure-wise)
+
 
 // class Solution {
 //     public String removeOuterParentheses(String s) {
@@ -57,7 +84,10 @@ class Solution {
 // }
 
 
+
 //VS
+
+
 
 // Without Stack ( most Efficient)
 
