@@ -1,6 +1,6 @@
 class Solution {
     public String reverseWords(String s) {
-        String[] strArr = s.strip().split("\\s+");
+        String[] strArr = s.strip().split(" +");  	    //OR s.split("\\s+");
 
         StringBuilder ans = new StringBuilder();
 
@@ -9,12 +9,17 @@ class Solution {
             ans.append(" ");
         }
 
-        String finalAns = ans.toString().strip();
-        return finalAns;
+        return ans.toString().strip();
     }
 }
 
-//used regex(to remove multiple spaces): 
+//used regex(to remove multiple spaces):
+//  You write	Regex engine understands
+//  "."	        any character
+//  "\\."   	literal dot
+//  " "	        exactly one space
+//  "\\s+"	    any whitespace, any amount
+//  " +"	    spaces only
 
 // VS
 
@@ -36,7 +41,5 @@ class Solution {
 //             while(!st.isEmpty()) ans.append(st.pop());
 //         }
 //         //StringBuilder does not have trim()/strip()[strip() is modern as it removes non ascii spaces(unicode) also], use it on String
-//         String finalAns = ans.toString().trim();
-
-//         return finalAns;
+//         return ans.toString().strip();
 // }
