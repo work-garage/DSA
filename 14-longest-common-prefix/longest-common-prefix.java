@@ -9,3 +9,28 @@ class Solution {
         return strs[0];
     }
 }
+
+
+
+// above is my approach
+// below is nice and slightly good approach
+
+
+
+
+// class Solution {
+//     public String longestCommonPrefix(String[] strs) {
+//         if (strs == null || strs.length == 0) return "";
+
+//         String prefix = strs[0];  // take first string as reference
+
+//         for (int i = 1; i < strs.length; i++) {
+//             // keep reducing prefix until it matches the start of strs[i]
+//             while (strs[i].indexOf(prefix) != 0) {
+//                 prefix = prefix.substring(0, prefix.length() - 1);
+//                 if (prefix.isEmpty()) return "";
+//             }
+//         }
+//         return prefix;
+//     }
+// }
