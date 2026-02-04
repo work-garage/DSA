@@ -1,4 +1,6 @@
 class Solution {
+
+    //IMP: Best way for checking Bijection(mapping between two sets where each element of the first set (domain) pairs with exactly one unique element of the second set (codomain), and vice versa)
     // Below is optimised approach as time: O(N)
 
     public boolean isIsomorphic(String s, String t) {
