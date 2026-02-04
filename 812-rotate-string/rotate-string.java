@@ -1,10 +1,19 @@
 class Solution {
+
+    //IMP:Very good approach of checking Rotated sequence
+    // Optimised
+
     public boolean rotateString(String s, String goal) {
         if (s.length() != goal.length()) return false;
 
-        String Double = s+s;
+        StringBuilder Double = new StringBuilder();  
+        Double.append(s).append(s);                 
 
-        return Double.contains(goal);
+        return Double.toString().contains(goal);
+    
+        // OR can do below but as string is immutable, so used StringBuilder
+        //   String Double = s+s;
+        //  return Double.contains(goal);
     }
 }
 
