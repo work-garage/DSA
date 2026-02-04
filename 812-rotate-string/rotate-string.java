@@ -1,23 +1,41 @@
 class Solution {
     public boolean rotateString(String s, String goal) {
-
         if (s.length() != goal.length()) return false;
 
-        if(s.equals(goal)) return true;
+        String Double = s+s;
 
-        for(int i=1; i<s.length(); i++){
-
-            String str = new String();
-            str = s.substring(i,s.length())+s.substring(0,i);
-            
-            if(str.equals(goal)) return true;
-
-        }
-        return false;
+        return Double.contains(goal);
     }
 }
 
+
+// VS
+
+
+    //Below are brute force Unoptimised approaches.
+
+
+    // public boolean rotateString(String s, String goal) {
+
+    //     if (s.length() != goal.length()) return false;
+
+    //     if(s.equals(goal)) return true;
+
+    //     for(int i=1; i<s.length(); i++){
+
+    //         String str = new String();
+    //         str = s.substring(i,s.length())+s.substring(0,i);
+            
+    //         if(str.equals(goal)) return true;
+
+    //     }
+    //     return false;
+    // }
+
+
+
 // OR
+
 
     // public boolean rotateString(String s, String goal) {
 
