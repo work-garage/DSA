@@ -15,6 +15,13 @@ class Solution {
             
         }
 
+        //OR can only do: because only 26 alphabets are needed, i took 128 for all ascii but not need of that
+        // int[] freq=new int[26];
+        // for(int i=0;i<s.length();i++){
+        //     freq[s.charAt(i)-97]++;
+        //     freq[t.charAt(i)-97]--;
+        // }
+
         for(int val: a){
             if(val!=0) return false;
         }
