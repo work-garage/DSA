@@ -9,17 +9,25 @@
  * }
  */
 class Solution {
+
+    // IMP Q things to learn:
+    // 1) Int, Long limits reach
+    // 2) forward the carry of Sum
+    
+
+    // Approach 2) i) my Optimised Approach Code (But It can also be made short, look below for popular solution of it 2 ii))
+
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode l = new ListNode();
         ListNode temp = l;
         while(l1!=null && l2!=null){    //
 
-            int n = temp.val+l1.val+l2.val;          // if x+y>9 then carry 1 forward
+            int n = temp.val+l1.val+l2.val;     // if x+y>9 then carry 1 forward
             temp.val = n%10;
             n/=10;
             
-            if(l1.next!=null || l2.next!=null || n>0){
-                temp.next = new ListNode();      // next prob
+            if(l1.next!=null || l2.next!=null || n>0){      //condition for extra next node problem
+                temp.next = new ListNode();
                 temp=temp.next;
             }
             
@@ -34,7 +42,7 @@ class Solution {
             n/=10;
 
             if(l1.next!=null || n>0){
-                temp.next = new ListNode();      // next prob
+                temp.next = new ListNode();
                 temp=temp.next;
             }
 
@@ -48,7 +56,7 @@ class Solution {
             n/=10;
 
             if(l2.next!=null || n>0){
-                temp.next = new ListNode();      // next prob
+                temp.next = new ListNode();
                 temp=temp.next;
             }
 
@@ -61,6 +69,52 @@ class Solution {
     }
 }
 
+
+
+    //Approach 2 ii) popular optimised minimised solution
+
+
+    // public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+
+    //     ListNode dummy = new ListNode(0);
+    //     ListNode temp = dummy;
+    //     int carry = 0;
+
+    //     while (l1 != null || l2 != null || carry != 0) {
+
+    //         int sum = carry;
+
+    //         if (l1 != null) {
+    //             sum += l1.val;
+    //             l1 = l1.next;
+    //         }
+
+    //         if (l2 != null) {
+    //             sum += l2.val;
+    //             l2 = l2.next;
+    //         }
+
+    //         carry = sum / 10;
+    //         temp.next = new ListNode(sum % 10);
+    //         temp = temp.next;
+    //     }
+
+    //     return dummy.next;
+    // }
+
+
+
+
+
+
+
+
+
+
+    // Approach 1 : Failed approach due to constraints given(too long number)
+
+
+    //Below Approach wont work as given costraints overflow int,long limits
 
     // For these constraints, The number of nodes in each linked list is in the range [1, 100]
     //int,long or any oher variable cannot handle number with 100 digits.
