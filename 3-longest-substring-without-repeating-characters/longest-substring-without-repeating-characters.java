@@ -29,10 +29,6 @@ class Solution {
 
 
 
-
-
-
-
 // Approach 1: brute force
 
 // time compx: O(N^2)
