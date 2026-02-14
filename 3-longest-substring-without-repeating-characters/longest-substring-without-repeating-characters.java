@@ -83,7 +83,7 @@ class Solution {
 
 
 // time compx: O():   ❌But this approach wont work here in O(N) as valid check will take N checks also each time using HashMap, so O(N^2)
-                    // This approach is more optimised on other sliding window question, but here its not more optimised
+                    // This approach is more optimised on other sliding window question where it takes O(1) to check still valid eg Q. Max Consecutive Ones III, but here its not more optimised.
 
 // Approach 3: No need to check by reducing len got till now, just dont take invalid cases in maxLen, where duplicates are present. 
     // Because why check those cases, which are giving less max than before.
