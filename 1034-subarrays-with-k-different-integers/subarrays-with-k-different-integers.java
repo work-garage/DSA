@@ -1,7 +1,7 @@
 class Solution {
 
     // Optimised: O(4N) = 2N of Check(nums, k) and 2N of Check(nums, k-1)
-    
+
     // Approach 3: WE HAVE TO FIND count of subarrays with NUMBER OF K DIFFERENT INTEGERS IN THAT ARRAY
     // So, [count of Unique elem = K] = [count of Unique elem <= K ]-[count of Unique elem <= K-1]
 
@@ -19,15 +19,18 @@ class Solution {
     public int Check(int[] nums, int k){
         HashMap<Integer, Integer> map = new HashMap<>();
         int count=0;
-        int left =0;
-        for(int right =0;right < nums.length; right++){
-            map.put(nums[right], map.getOrDefault(nums[right], 0) +1);
+        int i=0, j=0;
+
+        while(j < nums.length){
+            map.put(nums[j], map.getOrDefault(nums[j], 0) +1);
             while(map.size() > k){                               //for: do not take subarrays above k unique num
-                map.put(nums[left], map.get(nums[left]) -1);
-                if(map.get(nums[left]) == 0)map.remove(nums[left]);
-                left++;
+                map.put(nums[i], map.get(nums[i]) -1);
+                if(map.get(nums[i]) == 0)map.remove(nums[i]);
+                i++;
             }
-            count = count + (right - left +1);
+            count = count + (j - i +1);
+
+            j++;
         }
         return count;
     }
@@ -41,9 +44,11 @@ class Solution {
 
 
     // Approach 2: Sliding Window + need of iterate selected window to include all needed subarrays
+    // This was a try for Sliding window in O(N) but that can't happen So, have to do in O(N^2)
+    // But in O(N), sliding window can count number of subarrays using count = count + (j - i +1)
+    // but, can't iterate through all subarrays in O(N)
 
-
-    // Note: TLE as this approach is may be O(n^2) worst-case because you copy the map and loop for many j
+    // Note: TLE as this approach is may be O(N^2) worst-case because you copy the map and loop for many j
 
     // public int subarraysWithKDistinct(int[] nums, int k) {
     //     HashMap<Integer,Integer> hm = new HashMap<>();
