@@ -15,7 +15,7 @@ class Solution {
                 if(nums[mid-1]>nums[mid]) return nums[mid];
                 else e=mid-1;
             }
-            else if(nums[mid]>=nums[0]) s=mid+1;
+            else if(nums[mid]>=nums[s]) s=mid+1;
 
         }
         return nums[0];         // even though handled upper at nums[e]>=nums[s] but, phirbhi: if(nums.length==1)
