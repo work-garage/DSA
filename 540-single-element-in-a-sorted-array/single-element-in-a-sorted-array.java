@@ -1,4 +1,34 @@
 class Solution {
+
+    /////// Approach: Even/Odd pattern
+
+    // Array
+
+    // Value:  1  1  2  2  3  3  4  5  5  6  6
+    // Index:  0  1  2  3  4  5  6  7  8  9 10
+
+    // Index Parity
+
+    // 1    1    2    2    3    3    4    5    5    6    6
+    // |    |    |    |    |    |    |    |    |    |    |
+    // Even Odd  Even Odd  Even Odd  Even Odd  Even Odd  Even
+
+    // Pair Structure
+
+    // (1,1) (2,2) (3,3)  4  (5,5) (6,6)
+    // E-O   E-O   E-O   S   O-E   O-E
+
+
+    // S = Single element
+
+    //     // Pattern Observation:                              // IMP
+
+    // (even, odd) → single element is in the right half
+    // (odd, even) → single element is in the left half
+
+    ////////
+
+    // Approach: Even/Odd pattern
     public int singleNonDuplicate(int[] nums) {
         int s=0,e=nums.length-1;
 
@@ -26,6 +56,7 @@ class Solution {
 }
 
 
+
     // this Approach❌ won't work as doing s=mid or e=mid instead of s=mid+1 or e=mid-1: starts infinity loop for cases like: [1,1,2]
 
     // public int singleNonDuplicate(int[] nums) {
@@ -48,6 +79,7 @@ class Solution {
     //     }
     //     return nums[0];
     // }
+
 
 
 
