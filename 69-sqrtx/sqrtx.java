@@ -1,5 +1,12 @@
 class Solution {
+
+    // brute force: linear search
     public int mySqrt(int x) {
-        return (int) Math.pow(x,0.5);
+        long ans=0;
+        for(long i=0; i<=x; i++){
+            if(i*i<=x) ans=i;
+            else break;
+        }
+        return (int) ans;
     }
 }
