@@ -10,7 +10,7 @@ class Solution {
                 ans=mid;
                 s=mid+1;
             }
-            else if(mid*mid>x){
+            else if(mid*mid>x){         // got higher value than x, go for less than current mid
                 e=mid-1;
             }
         }
