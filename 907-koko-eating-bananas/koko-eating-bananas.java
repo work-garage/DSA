@@ -1,5 +1,7 @@
 class Solution {
 
+    ///// Binary Search on Answer Space
+
     ///// Approach 2: Binary Search check in range of [1 to max_elem_of_(Arr)] for array elements:
                       // O( log( max(Arr) ) * N)
 
