@@ -173,6 +173,9 @@ class Solution {
         //     }
         // }
 
+        // We are not doing the above commented code as in last, in every condition we are finall updating the tm with new found value.
+
+        // Always store the current node for this depth (overwrites previous)
         TreeMap<Integer,Integer> v = new TreeMap<>();
         v.put(r, curr.val);
         tm.put(l,v);
