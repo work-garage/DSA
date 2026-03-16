@@ -1,4 +1,10 @@
 class Solution {
+
+
+    //Approach 3: IMP
+    // See all other more optimize Ways in editorial(its free)
+
+
     // Approach 2: way 1: Sliding Window
     // O(2N) of arrSum func, contains 2 nested loop So, runs for (2N)
     public int numSubarrayProductLessThanK(int[] nums, int k) {
