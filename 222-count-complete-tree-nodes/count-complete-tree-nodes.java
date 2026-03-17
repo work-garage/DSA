@@ -13,11 +13,34 @@
  *     }
  * }
  */
+
+
+
+// Approach: O( (log N)^2 )
+
+// class Solution {
+    
+// }
+
+
+
+
+
+
+
 class Solution {
+
+    // Approach: Using DFS: Compute tree height. using height, count total nodes till height-1 level, count nodes in last level using dfs.
+
+    // ans = total till h-1 + nodes in last level
+
+    // DFS: It runs in O(n) time (single traversal) and O(h) recursion stack (h = height).
+
     public int countNodes(TreeNode root) {
         if (root == null) return 0;
 
-        // use single-element arrays as mutable holders (like pass-by-ref)
+        // I wanted a variable which can be serve value outside of recursion
+        // Can't use Integer(wrapper) as they are immutable, so Used single element array
         int[] height = new int[1]; // holds the maximum depth found
         int[] lastLevelNodesCnt = new int[1]; // count of nodes at the deepest level
 
