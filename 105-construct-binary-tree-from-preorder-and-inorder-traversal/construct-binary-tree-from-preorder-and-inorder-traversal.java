@@ -21,37 +21,39 @@
 
 // -instead of Arrays.copyOfRange make new array and takes worst of O(N), So to optimize to O(1), we can keep the same inorder array and pass 2 range pointers.
 
-// (Imp)-instead of Queue, keep pointer preIdx on preorder array.
+// (Imp)-instead of Queue, keep pointer preorderIndex on preorder array.
 
 
 
 // Time complexity: O(n)     Space complexity: O(n)
 class Solution {
-    private int preIdx = 0;
-    private Map<Integer, Integer> inMap;
+    int preorderIndex = 0;
+    HashMap<Integer, Integer> map = new HashMap<>();
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        inMap = new HashMap<>();
-        for (int i = 0; i < inorder.length; i++) {
-            inMap.put(inorder[i], i);
+        for(int i = 0; i < inorder.length; i++){
+            map.put(inorder[i], i);
         }
         return build(preorder, 0, inorder.length - 1);
     }
 
-    private TreeNode build(int[] preorder, int inL, int inR) {
-        if (inL > inR) return null;
+    public TreeNode build(int[] preorder, int left, int right){
+        if(left > right){
+            return null;
+        }
 
-        int rootVal = preorder[preIdx++];
-        TreeNode root = new TreeNode(rootVal);
+        int rootvalue = preorder[preorderIndex++];
+        TreeNode root = new TreeNode(rootvalue);
 
-        int idx = inMap.get(rootVal);
+        int inorderIndex = map.get(rootvalue);
 
-        root.left = build(preorder, inL, idx - 1);
-        root.right = build(preorder, idx + 1, inR);
+        root.left = build(preorder, left, inorderIndex - 1);
+        root.right = build(preorder, inorderIndex + 1, right);
 
         return root;
     }
 }
+
 
 
 
