@@ -10,53 +10,47 @@
 
 
 
-
-// Approach: 
-// serialize to eg. "1 2 3 n n 4 5 n n n n "
-// deserialize: I assign left and right child for each not-null node, and add the not-null children to the queue, waiting to be handled later.
+////////////////////////////// Approach: (deserialize)building tree with recursion which returns nodes
 
 public class Codec {
-    // eg. "1 2 3 n n 4 5 n n n n "
+    // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
-        if (root == null) return "";
-        Queue<TreeNode> q = new LinkedList<>();
-        StringBuilder res = new StringBuilder();
-        q.add(root);
-        while (!q.isEmpty()) {
-            TreeNode node = q.poll();
-            if (node == null) {
-                res.append("n ");
-                continue;
-            }
-            res.append(node.val + " ");
-            q.add(node.left);
-            q.add(node.right);
-        }
-        return res.toString();
+        StringBuilder sb = new StringBuilder();
+        helper(root, sb);
+        return sb.toString();
     }
 
-
-    // bfs(queue) to deserialize also: create root elem, then assign its left,right and put new elems in queue
-    public TreeNode deserialize(String data) {
-        if (data == "") return null;
-        Queue<TreeNode> q = new LinkedList<>();
-        String[] values = data.split(" ");
-        TreeNode root = new TreeNode(Integer.parseInt(values[0]));
-        q.add(root);
-        for (int i = 1; i < values.length; i++) {
-            TreeNode parent = q.poll();
-            if (!values[i].equals("n")) {
-                TreeNode left = new TreeNode(Integer.parseInt(values[i]));
-                parent.left = left;
-                q.add(left);
-            }
-            if (!values[++i].equals("n")) {
-                TreeNode right = new TreeNode(Integer.parseInt(values[i]));
-                parent.right = right;
-                q.add(right);
-            }
+    private void helper(TreeNode root, StringBuilder sb) {
+        if (root == null) {
+            sb.append("# ");
+            return;
         }
-        return root;
+
+        sb.append(root.val).append(" ");
+        helper(root.left, sb);
+        helper(root.right, sb);
+    }
+
+    private int index = 0;
+
+    // Decodes your encoded data to tree.
+    public TreeNode deserialize(String data) {
+        String[] nodes = data.trim().split(" ");
+        index = 0;
+        return build(nodes);
+    }
+
+    private TreeNode build(String[] nodes) {
+        if (index == nodes.length) return null;
+
+        String val = nodes[index++];
+        if (val.equals("#")) return null;
+
+        TreeNode node = new TreeNode(Integer.parseInt(val));
+        node.left = build(nodes);
+        node.right = build(nodes);
+
+        return node;
     }
 }
 
@@ -65,7 +59,71 @@ public class Codec {
 
 
 
-// My Approach(have to fix)
+
+
+
+
+
+// Approach: 
+// serialize to eg. "1 2 3 n n 4 5 n n n n "
+// deserialize: I assign left and right child for each not-null node, and add the not-null children to the queue, waiting to be handled later.
+
+// public class Codec {
+//     // eg. "1 2 3 n n 4 5 n n n n "
+//     public String serialize(TreeNode root) {
+//         if (root == null) return "";
+//         Queue<TreeNode> q = new LinkedList<>();
+//         StringBuilder res = new StringBuilder();
+//         q.add(root);
+//         while (!q.isEmpty()) {
+//             TreeNode node = q.poll();
+//             if (node == null) {
+//                 res.append("n ");
+//                 continue;
+//             }
+//             res.append(node.val + " ");
+//             q.add(node.left);
+//             q.add(node.right);
+//         }
+//         return res.toString();
+//     }
+
+
+//     // bfs(queue) to deserialize also: create root elem, then assign its left,right and put new elems in queue
+//     public TreeNode deserialize(String data) {
+//         if (data == "") return null;
+//         Queue<TreeNode> q = new LinkedList<>();
+//         String[] values = data.split(" ");
+//         TreeNode root = new TreeNode(Integer.parseInt(values[0]));
+//         q.add(root);
+//         for (int i = 1; i < values.length; i++) {
+//             TreeNode parent = q.poll();
+//             if (!values[i].equals("n")) {
+//                 TreeNode left = new TreeNode(Integer.parseInt(values[i]));
+//                 parent.left = left;
+//                 q.add(left);
+//             }
+//             if (!values[++i].equals("n")) {
+//                 TreeNode right = new TreeNode(Integer.parseInt(values[i]));
+//                 parent.right = right;
+//                 q.add(right);
+//             }
+//         }
+//         return root;
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
+
+// My Approach(have to fix): recursive approach try
 
 // public class Codec {
 
@@ -133,6 +191,9 @@ public class Codec {
 //         // node.right = helper(2*i+2, node, s);
 //     }
 // }
+
+
+
 
 
 
