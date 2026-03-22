@@ -16,7 +16,7 @@
 
 
 
-// Approach 2: Morris preorder approch
+// Approach 2: Morris preorder approach
 // Time: O(N)   Space: O(1)
 
 
