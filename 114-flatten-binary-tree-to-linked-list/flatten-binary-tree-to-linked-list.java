@@ -13,6 +13,17 @@
  *     }
  * }
  */
+
+
+
+// Approach 2: Morris preorder approch
+// Time: O(N)   Space: O(1)
+
+
+
+// Approach 1: Used Stack to save right subtree and place left in place of right subtree and so on.
+// Time: O(N)   Space: O(N)
+
 class Solution {
     public void flatten(TreeNode root) {
 
@@ -24,7 +35,7 @@ class Solution {
             
             if(root.right!=null) st.push(root.right);
             root.right=root.left;
-            root.left=null;
+            root.left=null;                        // IMP: you will forget it to do
             
             if(root.right!=null) root=root.right;
             else{
