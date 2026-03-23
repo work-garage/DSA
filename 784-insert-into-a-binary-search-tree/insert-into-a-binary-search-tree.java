@@ -18,31 +18,22 @@ class Solution {
 
     // Recursion:
     public TreeNode insertIntoBST(TreeNode root, int val) {
-       TreeNode upd = dfs(root, val);
-        if (upd != null) {
-            return upd;
-        }
-        return root;
+        return dfs(root, val);
     }
 
     private TreeNode dfs(TreeNode curr, int val) {
 
         if (curr == null) {
-            return new TreeNode(val);
+            return new TreeNode(val);   // insert here
         }
 
         if (val < curr.val) {
-            TreeNode left = dfs(curr.left, val);
-            if (left != null) {
-                curr.left = left;
-            }
+            curr.left = dfs(curr.left, val);
         } else {
-            TreeNode right = dfs(curr.right, val);
-            if (right != null) {
-                curr.right = right;
-            }
+            curr.right = dfs(curr.right, val);
         }
-        return null;
+
+        return curr;   // return updated subtree
     }
 
 
