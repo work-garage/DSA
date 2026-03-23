@@ -16,6 +16,7 @@
 
 class Solution {
 
+
     // Recursion:
     public TreeNode insertIntoBST(TreeNode root, int val) {
         return dfs(root, val);
@@ -38,18 +39,15 @@ class Solution {
 
 
 
-
     // My Approach(Iteration) of adding elem in last, when null is found
     // But, form an unbalanced BST
 
     // public TreeNode insertIntoBST(TreeNode root, int val) {
 
     //     if(root==null) return new TreeNode(val);
-        
     //     TreeNode curr = root;
 
     //     while(true){
-
     //         if(curr.val<val){
 
     //             if(curr.right!=null) curr=curr.right;
@@ -63,7 +61,8 @@ class Solution {
         
     //     if(curr.val>val) curr.left = new TreeNode(val); //add given elem in place of null in last level
     //     else curr.right = new TreeNode(val);
-
+    
     //     return root;
     // }
+
 }
