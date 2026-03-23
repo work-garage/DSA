@@ -26,8 +26,8 @@ class Solution {
         if(root==null) return null;
 
         if(root.val==val) return root;
-        else if(root.val>val) return searchBST(root.left,val);
-        else return searchBST(root.right,val);
+        else if(root.val>val) return searchBST(root.left,val);          //you'll forget to write return
+        else return searchBST(root.right,val);                          //you'll forget to write return
 
     }
 
