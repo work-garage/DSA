@@ -13,17 +13,38 @@
  *     }
  * }
  */
+
 class Solution {
+
+    // search in BST: O(log N) if balanced bst
+    //                O(N)     if unbalanced bst
+
+
+    //Standard soln
     public TreeNode searchBST(TreeNode root, int val) {
 
         if(root==null) return null;
 
         if(root.val==val) return root;
-        else if(root.val>val) root=root.left;
-        else root=root.right;
+        else if(root.val>val) return searchBST(root.left,val);
+        else return searchBST(root.right,val);
 
-        TreeNode t = searchBST(root,val);
-        if(t!=null) return t;
-        else return null;
     }
+
+    //OR
+
+    //my soln, same approach
+
+    // public TreeNode searchBST(TreeNode root, int val) {
+
+    //     if(root==null) return null;
+
+    //     if(root.val==val) return root;
+    //     else if(root.val>val) root=root.left;
+    //     else root=root.right;
+
+    //     TreeNode t = searchBST(root,val);
+    //     if(t!=null) return t;
+    //     else return null;
+    // }
 }
