@@ -19,7 +19,6 @@ class Solution {
             // -> If the previous sum is helping you, carry it forward.(currMax+arr[i])
 
             if(currMax>max) max=currMax;        // storing max sum found till now
-            
         }
 
         return max;
